@@ -1,10 +1,9 @@
 var entrancePassword = prompt("Please,Create a Password For Registration: ");
 console.log(`Your Password Is Completely Noted: ${entrancePassword}  `);
-var entranceBalance = prompt("Please, Add Your Balance:");
+var entranceBalance =Number(prompt("Please, Add Your Balance:"));
 console.log(`Your Balance Is Completely Noted: ${entranceBalance}  `);
 var tryCount = 3;
 var trs = [];
-var trs2 = [];
 var salary = entranceBalance;
 while (tryCount > 0) {
   var password = prompt("Enter your Password: ");
@@ -41,8 +40,97 @@ while (tryCount > 0) {
           if (isContinue) {
             var credit2 = (entranceBalance * 45) / 100;
             var credit3 = credit2 - (credit2 * 2) / 100;
-            console.log(`Your Credit is: ${credit3}`);
-          } else {
+            var result=entranceBalance+credit3
+            console.log(`Your Credit is: ${result}`);
+            var choose = prompt(
+                `Do You Want to Take money or Pay Credit:  K or P  `
+              );
+              if (choose === K) {
+                while (result >= 0) {
+                  var amount = Number(prompt("How Much Money Do You Want?"));
+                  if (amount <= result) {
+                    result -= amount;
+                    trs.push([amount, new Date()]);
+                    console.log(`The Balance In Your Card Is: ${result}`);
+                    isContinue = confirm("Do you want to continue?");
+                    if (!isContinue) {
+                      var isShow = confirm("Do you want to see transiction? ");
+                      if (isShow) {
+                        for (const tr of trs) {
+                          document.write(
+                            `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKING OWN MONEY <br/>`
+                          );
+                        }
+                        for (const tr of trs) {
+                          document.write(
+                            `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKE FROM CREDIT <br/>`
+                          );
+                        }
+                      }
+                      console.log("THANKS FOR EVERYTHING!");
+                      break;
+                    }
+                  } else {
+                    console.log(
+                      "There Is No Any Chance,Thanks for your attention:"
+                    );
+                    break;
+                  }
+                  if (result === 0) {
+                    console.log("There Is No Any Credit In Your Card,");
+                    break;
+                  }
+                }
+          break;
+        }  
+        if (choose === P) {
+          while (result >= 0) {
+            var amount = Number(
+              prompt("How Much Money Do You Want For Pay Borrow?")
+            );
+            if (amount <= result) {
+              result -= amount;
+              trs.push([amount, new Date()]);
+              console.log(`The Balance In Your Card Is: ${result}`);
+              isContinue = confirm("Do you want to continue?");
+              if (!isContinue) {
+                var isShow = confirm("Do you want to see transiction? ");
+                if (isShow) {
+                  for (const tr of trs) {
+                    document.write(
+                      `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKING OWN MONEY <br/>`
+                    );
+                  }
+                  for (const tr of trs) {
+                    document.write(
+                      `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKE FROM CREDIT <br/>`
+                    );
+                  }
+                  for (const tr of trs) {
+                    document.write(
+                      `AMOUNT: ${tr[0]}   DATE: ${tr[1]} PAY FOR CREDIT BORROW <br/>`
+                    );
+                  }
+                }
+                console.log("THANKS FOR EVERYTHING!");
+                break;
+              }
+            } else {
+              console.log(
+                "There Is No Any Chance,Thanks for your attention:"
+              );
+              break;
+            }
+            if (result=== 0) {
+              console.log("There Is No Any Credit In Your Card,");
+              break;
+            }
+          }
+        }
+        
+        break;
+    } 
+           else {
             break;
           }
         }
@@ -52,17 +140,18 @@ while (tryCount > 0) {
           if (isContinue) {
             var credit2 = (salary * 45) / 100;
             var credit3 = credit2 - (credit2 * 2) / 100;
-            console.log(`Your Credit is: ${credit3}`);
+            var result=entranceBalance+credit3;
+            console.log(`Your Credit is: ${result}`);
             var choose = prompt(
               `Do You Want to Take money or Pay Credit:  K or P  `
             );
             if (choose === K) {
-              while (credit3 >= 0) {
+              while (result >= 0) {
                 var amount = Number(prompt("How Much Money Do You Want?"));
-                if (amount <= credit3) {
-                  credit3 -= amount;
-                  trs2.push([amount, new Date()]);
-                  console.log(`The Balance In Your Card Is: ${credit3}`);
+                if (amount <= result) {
+                  result -= amount;
+                  trs.push([amount, new Date()]);
+                  console.log(`The Balance In Your Card Is: ${result}`);
                   isContinue = confirm("Do you want to continue?");
                   if (!isContinue) {
                     var isShow = confirm("Do you want to see transiction? ");
@@ -72,7 +161,7 @@ while (tryCount > 0) {
                           `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKING OWN MONEY <br/>`
                         );
                       }
-                      for (const tr of trs2) {
+                      for (const tr of trs) {
                         document.write(
                           `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKE FROM CREDIT <br/>`
                         );
@@ -87,7 +176,7 @@ while (tryCount > 0) {
                   );
                   break;
                 }
-                if (credit3 === 0) {
+                if (result=== 0) {
                   console.log("There Is No Any Credit In Your Card,");
                   break;
                 }
@@ -95,14 +184,14 @@ while (tryCount > 0) {
               break;
             }
             if (choose === P) {
-              while (credit3 >= 0) {
+              while (result >= 0) {
                 var amount = Number(
                   prompt("How Much Money Do You Want For Pay Borrow?")
                 );
-                if (amount <= credit3) {
-                  credit3 -= amount;
+                if (amount <= result) {
+                  result -= amount;
                   trs.push([amount, new Date()]);
-                  console.log(`The Balance In Your Card Is: ${credit3}`);
+                  console.log(`The Balance In Your Card Is: ${result}`);
                   isContinue = confirm("Do you want to continue?");
                   if (!isContinue) {
                     var isShow = confirm("Do you want to see transiction? ");
@@ -112,7 +201,7 @@ while (tryCount > 0) {
                           `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKING OWN MONEY <br/>`
                         );
                       }
-                      for (const tr of trs2) {
+                      for (const tr of trs) {
                         document.write(
                           `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKE FROM CREDIT <br/>`
                         );
@@ -132,7 +221,7 @@ while (tryCount > 0) {
                   );
                   break;
                 }
-                if (credit3 === 0) {
+                if (result=== 0) {
                   console.log("There Is No Any Credit In Your Card,");
                   break;
                 }
@@ -160,7 +249,7 @@ while (tryCount > 0) {
                   `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKING OWN MONEY <br/>`
                 );
               }
-              for (const tr of trs2) {
+              for (const tr of trs) {
                 document.write(
                   `AMOUNT: ${tr[0]}   DATE: ${tr[1]} TAKE FROM CREDIT <br/>`
                 );
@@ -194,7 +283,7 @@ while (tryCount > 0) {
       break;
     } else {
     }
-    if (!isContinue || credit3 === 0) {
+    if (!isContinue || result === 0) {
       break;
     }
   } else {
